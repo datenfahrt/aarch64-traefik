@@ -1,0 +1,42 @@
+################################################################
+# Web configuration backend
+################################################################
+
+traefikLogsFile = "/app/log/traefik.log"
+accessLogsFile = "/app/log/access.log"
+
+defaultEntryPoints = ["http", "https"]
+
+[web]
+address = ":8080"
+
+# SSL certificate and key used
+
+CertFile = "/app/cert/tls.crt"
+KeyFile = "/app/cert/tls.key"
+
+# To enable more detailed statistics
+
+[web.statistics]
+  RecentErrors = 10
+
+################################################################
+# Docker configuration backend
+################################################################
+[docker]
+domain = "docker.lan"
+watch = true
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+
+  [entryPoints.https]
+  address = ":443"
+
+  [entryPoints.https.tls]
+    [[entryPoints.https.tls.certificates]]
+      CertFile = "/app/cert/tls.crt"
+      KeyFile = "/app/cert/tls.key"
+
+
