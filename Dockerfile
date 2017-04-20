@@ -1,6 +1,6 @@
 FROM datenfahrt/aarch64-alpine:3.5
 
-MAINTAINER haiko hall <haiko.hall@gmail.com>
+MAINTAINER Haiko <haiko@datenfahrt.org>
 
 ENV APPVERSION "v1.2.3" 
 
