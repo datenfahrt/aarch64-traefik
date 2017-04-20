@@ -1,8 +1,8 @@
-FROM datenfahrt/aarch64-alpine
+FROM datenfahrt/aarch64-alpine:3.5
 
 MAINTAINER haiko hall <haiko.hall@gmail.com>
 
-ENV APPVERSION "v1.2.0-rc1" 
+ENV APPVERSION "v1.2.3" 
 
 RUN apk --update --no-cache add curl tzdata
 
@@ -18,7 +18,7 @@ COPY ./config.toml /app/config.toml
 COPY ./cert /app/cert
 
 RUN ln -sf /dev/stdout /app/log/access.log
-#RUN ln -sf /dev/stderr /app/log/traefik.log
+RUN ln -sf /dev/stderr /app/log/traefik.log
 
 WORKDIR /app
 
