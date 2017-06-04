@@ -25,6 +25,7 @@ docker run -d --name traefik -p 8080:8080 -p 80:80 -p443:443 -v /var/run/docker.
 
 * datenfahrt/aarch64-traefik:latest
 
+* datenfahrt/aarch64-traefik:1.3.0 (alpine linux 3.6.1)
 * datenfahrt/aarch64-traefik:1.3.0-rc1
 * datenfahrt/aarch64-traefik:1.2.3
 * datenfahrt/aarch64-traefik:1.2.0
