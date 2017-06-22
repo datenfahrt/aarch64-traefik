@@ -2,7 +2,7 @@ FROM datenfahrt/aarch64-alpine:3.6.1
 
 MAINTAINER Haiko <haiko@datenfahrt.org>
 
-ENV APPVERSION "v1.3.0" 
+ENV APPVERSION "v1.3.1" 
 
 RUN apk --update --no-cache add curl tzdata
 
@@ -10,7 +10,7 @@ RUN cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
 RUN mkdir -p /app/cert /app/log 
 
-RUN curl -L -o /app/traefik https://github.com/containous/traefik/releases/download/$APPVERSION/traefik_linux-arm64 && chmod +x /app/traefik
+RUN curl -L -o /app/traefik https://github.com/containous/traefik/releases/download/${APPVERSION}/traefik_linux-arm64 && chmod +x /app/traefik
 
 RUN touch /app/log/access.log && touch /app/log/traefik.log
 
