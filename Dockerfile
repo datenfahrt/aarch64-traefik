@@ -1,8 +1,8 @@
-FROM datenfahrt/aarch64-alpine:3.6.1
+FROM datenfahrt/aarch64-alpine:3.6.2
 
 MAINTAINER Haiko <haiko@datenfahrt.org>
 
-ENV APPVERSION "v1.3.1" 
+ENV APPVERSION "v1.3.2" 
 
 RUN apk --update --no-cache add curl tzdata
 
