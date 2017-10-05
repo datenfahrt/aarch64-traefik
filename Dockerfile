@@ -2,26 +2,25 @@ FROM datenfahrt/aarch64-alpine:3.6.2
 
 MAINTAINER Haiko <haiko@datenfahrt.org>
 
-ENV APPVERSION "v1.3.3" 
+ENV APPVERSION "v1.4.0-rc4" 
 
-RUN apk --update --no-cache add curl tzdata
-
-RUN cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime
-
-RUN mkdir -p /app/cert /app/log 
-
-RUN curl -L -o /app/traefik https://github.com/containous/traefik/releases/download/${APPVERSION}/traefik_linux-arm64 && chmod +x /app/traefik
-
-RUN touch /app/log/access.log && touch /app/log/traefik.log
-
+RUN apk --update --no-cache add curl tzdata && \
+    cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
+    mkdir -p /app/cert /app/log && \
+    curl -L -o /usr/local/bin/traefik https://github.com/containous/traefik/releases/download/${APPVERSION}/traefik_linux-arm64 && \
+    chmod +x /usr/local/bin/traefik && \
+    ln -sf /dev/stdout /app/log/access.log && \
+    ln -sf /dev/stderr /app/log/traefik.log
+    
 COPY ./config.toml /app/config.toml
 COPY ./cert /app/cert
-
-RUN ln -sf /dev/stdout /app/log/access.log
-RUN ln -sf /dev/stderr /app/log/traefik.log
 
 WORKDIR /app
 
 EXPOSE 8080/tcp 80/tcp 443/tcp
 
-ENTRYPOINT ["./traefik","-c","/app/config.toml"]
+ENTRYPOINT ["traefik"]
+
+CMD ["-c","/app/config.toml"]
+
+
