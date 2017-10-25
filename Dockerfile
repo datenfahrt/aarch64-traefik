@@ -2,7 +2,7 @@ FROM datenfahrt/aarch64-alpine:3.6.2
 
 MAINTAINER Haiko 
 
-ENV APPVERSION "v1.4.0-rc5" 
+ENV APPVERSION "v1.4.1" 
 
 RUN apk --update --no-cache add curl tzdata && \
     cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
